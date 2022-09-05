@@ -15,18 +15,28 @@ const app = express();
 // configurar CORS
 app.use(cors());
 
+//Lectura y parseo del body
+app.use(express.json());
+
+
 // base de datos
 dbConnection();
 
 
 
 // rutas
-app.get('/', (req,resp) => {
-    resp.status(400).json({
-        ok:true,
-        msg:'hola mundo'
-    })
-});
+app.use('/api/usuarios', require('./routes/usuarios'));
+app.use('/api/login', require('./routes/auth'));
+
+// app.get('/api/usuarios', (req,resp) => {
+//     resp.json({
+//         ok:true,
+//         usuarios:[{
+//             id:123,
+//             nombre: 'Isaias'
+//         }]
+//     })
+// });
 
 
 app.listen(process.env.PORT, () => {
