@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const Usuario = require('../models/usuario');
 const { generarJWT } = require('../helpers/jwt');
 const { googleVeryfy } = require('../helpers/google-verify');
+const { async } = require('rxjs');
 
 const login = async (req, res = response) => {
 
@@ -86,7 +87,7 @@ const googleSingIn = async (req, res = response) => {
         })
     } catch (error) {
         console.log(error);
-        res.json({
+        res.status(500).json({
             ok:false,
             msg: 'Token de google no es correcto'
         })
@@ -97,9 +98,19 @@ const googleSingIn = async (req, res = response) => {
 }
 
 
+const renewToken = async(req, res = response) => {
+        const uid = req.uid;
+      //Generar JWT
+      const token = await generarJWT(uid);
 
+      res.json({
+        ok:true,
+        token
+    });
+}
 
 module.exports = {
     login,
-    googleSingIn
+    googleSingIn,
+    renewToken
 }
