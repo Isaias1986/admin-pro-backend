@@ -30,7 +30,7 @@ const login = async (req, res = response) => {
         }
 
         //Generar JWT
-        const token = await generarJWT(usuarioDB.id)
+        const token = await generarJWT(usuarioDB.id,usuarioDB.email)
 
 
 
@@ -76,8 +76,7 @@ const googleSingIn = async (req, res = response) => {
 
 
          //Generar JWT
-         const token = await generarJWT(usuario.id);
-
+         const token = await generarJWT(usuario.id,usuario.email);
         res.json({
             ok:true,
             email, 
@@ -100,8 +99,9 @@ const googleSingIn = async (req, res = response) => {
 
 const renewToken = async(req, res = response) => {
         const uid = req.uid;
+        const email = req.email;
       //Generar JWT
-      const token = await generarJWT(uid);
+      const token = await generarJWT(uid,email);
 
       res.json({
         ok:true,
