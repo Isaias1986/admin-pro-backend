@@ -1,4 +1,4 @@
-const { async } = require('rxjs');
+
 const { response } = require('express');
 const Usuario = require('../models/usuario');
 const { generarJWT } = require('../helpers/jwt');

@@ -3,7 +3,6 @@ const bcrypt = require('bcryptjs');
 const Usuario = require('../models/usuario');
 const { generarJWT } = require('../helpers/jwt');
 const { googleVeryfy } = require('../helpers/google-verify');
-const { async } = require('rxjs');
 const { getMenuFrontEnd } = require('../helpers/menu-frontend');
 
 

@@ -1,5 +1,4 @@
 const { response } = require('express');
-const { async } = require('rxjs');
 
 const Medico = require('../models/medico');
 
